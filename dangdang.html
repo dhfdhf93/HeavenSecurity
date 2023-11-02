@@ -7,12 +7,26 @@
 <h2>test dangdang</h2>
 <body>
 	<script type="text/javascript">
-		if(window.androidObject){
-			alert(window.androidObject.getToken());
-		}
-		else{
-			document.write('no androidObject');
-		}
+		// if(window.androidObject){
+		// 	alert(window.androidObject.getToken());
+		// }
+		// else{
+		// 	document.write('no androidObject');
+		// }
+function loginTokenCallback(token){
+  console.log('token is' + token);
+  document.write('token is '+ token);
+  
+  
+}
+setTimeout("getinfo()",70);
+document.location.href="https://h5hosting-drcn.dbankcdn.cn/aaa"
+
+  if(window.nativeCB){
+    window.nativeCB.bridgeGetLoginToken();
+  }else{
+     document.write('no native cb');
+  }
 	</script>
 </body>
 </html>
