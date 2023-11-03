@@ -13,17 +13,17 @@
 		// else{
 		// 	document.write('no androidObject');
 		// }
-function loginTokenCallback(token){
-  console.log('token is' + token);
-  document.write('token is '+ token);
+// function loginTokenCallback(token){
+//   console.log('token is' + token);
+//   document.write('token is '+ token);
   
   
-}
-setTimeout("getinfo()",70);
-document.location.href="https://h5hosting-drcn.dbankcdn.cn/aaa"
+// }
+// setTimeout("getinfo()",70);
+// document.location.href="https://h5hosting-drcn.dbankcdn.cn/aaa"
 
   if(window.nativeCB){
-    window.nativeCB.bridgeGetLoginToken();
+    window.nativeCB.bridgeScanQRCode();
   }else{
      document.write('no native cb');
   }
