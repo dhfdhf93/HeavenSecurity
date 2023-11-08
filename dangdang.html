@@ -31,41 +31,51 @@
 </body>
 </html>
  -->
-
- <!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>choose file</title>
+    <title>选择文件示例</title>
 </head>
-
 <body>
-<!-- 多文件上传 -->
-<input type="file" id="file" multiple onchange="fileChange()"/>
-<!-- 展示上传的文件内容 -->
-<textarea id="textarea"></textarea>
+    <h1>选择文件并展示内容</h1>
+    
+    <input type="file" id="fileInput" accept="image/*, .pdf, .txt" style="display: none;" onchange="displayFileContents()">
+    <button onclick="openFilePicker()">选择文件</button>
 
-<script>
-    function fileChange() {
-// 通过DOM获取上传的文件
-        var fileList = document.getElementById('file').files;
-// 遍历得到每个文件
-        for (var i = 0; i < fileList.length; i++) {
-// 得到FileReader对象
-            var reader = new FileReader();
-// 读取文件中的内容，执行读文件函数，设置编码格式。
-            reader.readAsText(fileList[i], 'UTF-8');
-// 读取文件，得到文件内容。
-            reader.onload = function (e) {
-                var content = e.target.result;
-                var textarea = document.getElementById('textarea');
-                textarea.value += content;
+    <div id="fileContents">
+        <!-- 选定文件的内容将在这里显示 -->
+    </div>
+
+    <script>
+        function openFilePicker() {
+            // 触发文件选择对话框
+            document.getElementById("fileInput").click();
+        }
+
+        function displayFileContents() {
+            var fileInput = document.getElementById("fileInput");
+            var fileContentsDiv = document.getElementById("fileContents");
+
+            if (fileInput.files.length > 0) {
+                var selectedFile = fileInput.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function(event) {
+                    // 读取到文件内容后显示在页面上
+                    var fileContents = event.target.result;
+                    fileContentsDiv.innerHTML = "<p>文件内容：</p><pre>" + fileContents + "</pre>";
+                };
+
+                // 根据文件类型选择不同的读取方式
+                if (selectedFile.type.startsWith("image")) {
+                    // 如果是图片文件，可以使用 URL.createObjectURL 来展示图片
+                    fileContentsDiv.innerHTML = "<img src='" + URL.createObjectURL(selectedFile) + "'>";
+                } else {
+                    // 对于其他文件类型，读取文件内容
+                    reader.readAsText(selectedFile);
+                }
             }
         }
-        console.log(textarea.value)
-    }
-
-    fileChange();
-</script>
+    </script>
 </body>
 </html>
