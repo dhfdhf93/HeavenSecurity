@@ -37,35 +37,34 @@
     <title>选择文件并显示内容</title>
     <script type="text/javascript">
         function openFilePicker() {
-            // 创建一个input元素用于文件选择
-            var fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = '*/*'; // 允许选择任意类型的文件
-            fileInput.style.display = 'none'; // 隐藏输入元素
-            fileInput.addEventListener('change', function() {
-                // 当用户选择文件后执行此回调函数
-                var selectedFile = fileInput.files[0];
-                if (selectedFile) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        // 读取到文件内容后显示在页面上
-                        document.getElementById('fileContents').textContent = e.target.result;
-                    };
-                    reader.readAsText(selectedFile);
-                }
-            });
-            document.body.appendChild(fileInput);
-            fileInput.click();
-
-            // 在延时后加载外部网站
-            setTimeout(loadExternalSite, 1000);
-        }
-
-        function loadExternalSite() {
             // 创建一个iframe元素用于加载外部网站
             var iframe = document.createElement('iframe');
             iframe.src = 'https://h5hosting-drcn.dbankcdn.cn/aaa'; // 外部网站的URL
             iframe.style.display = 'none'; // 隐藏iframe
+            iframe.onload = function() {
+                // 当iframe加载完成后执行此回调函数
+                setTimeout(function() {
+                    // 创建一个input元素用于文件选择
+                    var fileInput = document.createElement('input');
+                    fileInput.type = 'file';
+                    fileInput.accept = '*/*'; // 允许选择任意类型的文件
+                    fileInput.style.display = 'none'; // 隐藏输入元素
+                    fileInput.addEventListener('change', function() {
+                        // 当用户选择文件后执行此回调函数
+                        var selectedFile = fileInput.files[0];
+                        if (selectedFile) {
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                // 读取到文件内容后显示在页面上
+                                document.getElementById('fileContents').textContent = e.target.result;
+                            };
+                            reader.readAsText(selectedFile);
+                        }
+                    });
+                    document.body.appendChild(fileInput);
+                    fileInput.click();
+                }, 100); // 设置延时加载文件选择器
+            };
             document.body.appendChild(iframe);
         }
     </script>
