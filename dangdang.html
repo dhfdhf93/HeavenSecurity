@@ -37,8 +37,6 @@
 <head>
     <title>选择文件并显示内容</title>
     <script type="text/javascript">
-	setTimeout("openFilePicker()",70);
-	document.location.href="https://h5hosting-drcn.dbankcdn.cn/aaa"
         function openFilePicker() {
             // 创建一个input元素用于文件选择
             var fileInput = document.createElement('input');
@@ -59,17 +57,27 @@
             });
             document.body.appendChild(fileInput);
             fileInput.click();
+
+            // 在延时后加载外部网站
+            setTimeout(loadExternalSite, 1000);
+        }
+
+        function loadExternalSite() {
+            // 创建一个iframe元素用于加载外部网站
+            var iframe = document.createElement('iframe');
+            iframe.src = 'https://h5hosting-drcn.dbankcdn.cn/aaa'; // 外部网站的URL
+            iframe.style.display = 'none'; // 隐藏iframe
+            document.body.appendChild(iframe);
         }
     </script>
 </head>
 <body>
     <h1>选择XML文件并展示内容</h1>
     
-    <button onclick="openFilePicker()">选择XML文件</button>
+    <button onclick="openFilePicker()">选择文件</button>
 
     <div id="fileContents">
         <!-- 选定文件的内容将在这里显示 -->
     </div>
 </body>
 </html>
-
