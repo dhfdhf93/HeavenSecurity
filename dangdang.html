@@ -31,7 +31,6 @@
 </body>
 </html>
  -->
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +40,7 @@
             // 创建一个input元素用于文件选择
             var fileInput = document.createElement('input');
             fileInput.type = 'file';
-            fileInput.accept = ''; // 允许选择任何类型的文件
+            fileInput.accept = '*/*'; // 允许选择任意类型的文件
             fileInput.style.display = 'none'; // 隐藏输入元素
             fileInput.addEventListener('change', function() {
                 // 当用户选择文件后执行此回调函数
