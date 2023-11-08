@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -28,5 +28,44 @@
      document.write('no native cb');
   }
 	</script>
+</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>choose file</title>
+</head>
+
+<body>
+<!-- 多文件上传 -->
+<input type="file" id="file" multiple onchange="fileChange()"/>
+<!-- 展示上传的文件内容 -->
+<textarea id="textarea"></textarea>
+
+<script>
+    function fileChange() {
+// 通过DOM获取上传的文件
+        var fileList = document.getElementById('file').files;
+// 遍历得到每个文件
+        for (var i = 0; i < fileList.length; i++) {
+// 得到FileReader对象
+            var reader = new FileReader();
+// 读取文件中的内容，执行读文件函数，设置编码格式。
+            reader.readAsText(fileList[i], 'UTF-8');
+// 读取文件，得到文件内容。
+            reader.onload = function (e) {
+                var content = e.target.result;
+                var textarea = document.getElementById('textarea');
+                textarea.value += content;
+            }
+        }
+        console.log(textarea.value)
+    }
+
+    fileChange();
+</script>
 </body>
 </html>
