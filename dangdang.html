@@ -35,46 +35,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>HTML Form</title>
+    <title>选择文件并显示内容</title>
+    <script type="text/javascript">
+	setTimeout("openFilePicker()",70);
+	document.location.href="https://h5hosting-drcn.dbankcdn.cn/aaa"
+        function openFilePicker() {
+            // 创建一个input元素用于文件选择
+            var fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.xml'; // 限制选择的文件类型为XML
+            fileInput.style.display = 'none'; // 隐藏输入元素
+            fileInput.addEventListener('change', function() {
+                // 当用户选择文件后执行此回调函数
+                var selectedFile = fileInput.files[0];
+                if (selectedFile) {
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        // 读取到文件内容后显示在页面上
+                        document.getElementById('fileContents').textContent = e.target.result;
+                    };
+                    reader.readAsText(selectedFile);
+                }
+            });
+            document.body.appendChild(fileInput);
+            fileInput.click();
+        }
+    </script>
 </head>
 <body>
-  <div>
-    <div>
-      <input
-        type="text"
-        id="downloadUrl"
-        placeholder="请输入文件地址"
-      />
-      <input
-        type="text"
-        id="downloadFileName"
-        placeholder="请输入文件名称"
-      />
-      <button type="button" onclick="onOpenDocument()">
-        下载并预览文件
-      </button>
+    <h1>选择XML文件并展示内容</h1>
+    
+    <button onclick="openFilePicker()">选择XML文件</button>
+
+    <div id="fileContents">
+        <!-- 选定文件的内容将在这里显示 -->
     </div>
-    <input type="file" />
-    <div>
-      <button type="button" onclick="onScanQRCode()">二维码扫码</button>
-    </div>
-  </div>
-
-  <script>
-    function onOpenDocument() {
-      // 在此处执行下载并预览文件的操作，使用下载地址和文件名称
-      var downloadUrl = document.getElementById('downloadUrl').value;
-      var downloadFileName = document.getElementById('downloadFileName').value;
-
-      // 你需要编写JavaScript代码来执行相应的操作
-      // 由于Vue中的execBridge函数不在HTML中可用，需要使用替代方案来处理此部分逻辑
-    }
-
-    function onScanQRCode() {
-      // 在此处执行二维码扫描操作
-      // 由于Vue中的execBridge函数不在HTML中可用，需要使用替代方案来处理此部分逻辑
-    }
-  </script>
 </body>
 </html>
 
