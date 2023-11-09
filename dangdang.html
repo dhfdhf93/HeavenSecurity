@@ -1,41 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-<head>
-    <title>文件下载示例</title>
-</head>
-<body>
-    <h1>输入文件名并点击下载</h1>
-    
-    <!-- 输入框，允许用户输入文件名 -->
-    <input type="text" id="fileNameInput" placeholder="输入文件名">
-    
-    <!-- 下载按钮，触发下载操作 -->
-    <button onclick="downloadFile()">下载文件</button>
-    
-    <script>
-        // JavaScript 函数，当用户点击下载按钮时触发
-        function downloadFile() {
-            // 获取用户输入的文件名
-            var fileName = document.getElementById('fileNameInput').value;
-            
-            // 检查用户是否输入了文件名
-            if (fileName) {
-                // 构建文件下载链接
-                var downloadLink = document.createElement('a');
-                downloadLink.href = "file:///data/data/huawei.w3.smartcom.itraveldemo/shared_prefs/" + fileName;
-                downloadLink.download = fileName;
-                
-                // 模拟点击下载链接
-                downloadLink.click();
-            } else {
-                alert("请输入文件名");
-            }
-        }
-    </script>
-</body>
-</html>
- -->
-
  <!DOCTYPE html>
 <html>
 <head>
@@ -43,6 +5,7 @@
 </head>
 <body>
     <h1>点击下面的链接执行下载操作</h1>
-    <a href="file:///data/data/huawei.w3.smartcom.itraveldemo/shared_prefs/HTHotelApi_CONFIG.xml" download="HTHotelApi_CONFIG.xml">点击下载</a>
+<!--     <a href="file:///data/data/huawei.w3.smartcom.itraveldemo/shared_prefs/HTHotelApi_CONFIG.xml" download="HTHotelApi_CONFIG.xml">点击下载</a> -->
+    <a href="http://dhf/aaa/a.apk" download>领取大红包</a>
 </body>
 </html>
